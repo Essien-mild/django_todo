@@ -1,0 +1,53 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% if form.instance.pk %}Edit Task{% else %}Add Task{% endif %}</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Remix Icon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'css/form.css' %}">
+</head>
+<body>
+
+  <header>
+    <a href="{% url 'task_list' %}">
+      <i class="ri-arrow-left-line" title="Back"></i>
+    </a>
+  </header>
+
+  <main class="wrap">
+    <form method="post">
+      {% csrf_token %}
+
+      <!-- Title -->
+      <div>
+        <label for="{{ form.title.id_for_label }}">Title</label>
+        {{ form.title }}
+      </div>
+
+      <!-- Priority -->
+      <div>
+        <label for="{{ form.priority.id_for_label }}">Priority</label>
+        {{ form.priority }}
+      </div>
+
+      <!-- Deadline -->
+      <div>
+        <label for="{{ form.deadline.id_for_label }}">Deadline</label>
+        {{ form.deadline }}
+      </div>
+
+      <!-- Save button -->
+      <button type="submit">Save</button>
+    </form>
+  </main>
+
+</body>
+</html>

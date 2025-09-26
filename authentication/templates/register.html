@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo-List Sign Up</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <div class="container">
+    <!-- Left Section -->
+    <div class="left">
+      <div class="logo">
+        <i class="ri-file-list-line"></i>
+        <span>Todo-List App</span>
+      </div>
+      <p class="welcome">
+        Welcome ! <br>
+        <small>Sign up to get your notebook ready</small>
+      </p>
+
+      <div class="toggle-links">
+        <a href="{% url 'login' %}">Sign In</a>
+        <a href="{% url 'register' %}" class="active">Sign Up</a>
+      </div>
+        {% if messages %}
+          <ul>
+            {% for message in messages %}
+              {% if "register" in message.tags %}
+                <li>{{ message }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+      <!-- Django Form -->
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="input-group">
+          <i class="ri-user-line"></i>
+          <input type="text" name="username" placeholder="Enter your username" required>
+        </div>
+        
+        <div class="input-group">
+          <i class="ri-mail-line"></i>
+          <input type="email" name="email" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="input-group">
+          <i class="ri-lock-line"></i>
+          <input type="password" name="password1" placeholder="Enter your password" required>
+        </div>
+        
+        <div class="input-group">
+          <i class="ri-lock-line"></i>
+          <input type="password" name="password2" placeholder="Confirm password" required>
+        </div>
+
+        <div class="options">
+          <a href="{% url 'login' %}" class="forgot">Already have an account?</a>
+        </div>
+
+        <button type="submit" class="btn-login">Sign Up</button>
+      </form>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right">
+      <div class="glass">
+        <p>© 2025 Mild. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

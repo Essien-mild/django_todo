@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Confirm Delete</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Remix Icon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#101010;
+      --muted:#9b9b9b;
+      --accent-purple:#6f57ff;
+      --accent-yellow:#e6c84b;
+      --input:#242424;
+      --radius:12px;
+      --max-width:480px;
+    }
+
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#0b0b0b 60%);
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto;
+      color:#eee;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header{
+      height:70px;
+      display:flex;
+      align-items:center;
+      padding:0 20px;
+      background:rgba(0,0,0,0.25);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    header i{
+      font-size:26px;
+      color:#eee;
+      cursor:pointer;
+      transition:.2s;
+    }
+    header i:hover{color:var(--accent-purple)}
+
+    main{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+    }
+
+    .card{
+      background:linear-gradient(180deg,rgba(255,255,255,0.015),rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow:0 6px 20px rgba(0,0,0,0.6);
+      border-radius:var(--radius);
+      max-width:var(--max-width);
+      width:100%;
+      padding:30px;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .card i{
+      font-size:48px;
+      color:var(--accent-yellow);
+    }
+
+    .message{
+      font-size:16px;
+      line-height:1.5;
+      color:#eee;
+    }
+
+    .buttons{
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .btn{
+      flex:1;
+      min-width:110px;
+      padding:14px;
+      border-radius:var(--radius);
+      font-weight:600;
+      font-size:15px;
+      cursor:pointer;
+      border:none;
+      transition:.2s;
+    }
+
+    .btn-cancel{
+      background:var(--input);
+      color:#ddd;
+      border:1px solid rgba(255,255,255,0.05);
+    }
+    .btn-cancel:hover{background:#2c2c2c}
+
+    .btn-delete{
+      background:linear-gradient(180deg,var(--accent-purple),#5f47f5);
+      color:#fff;
+      box-shadow:0 6px 20px rgba(111,87,255,0.12);
+    }
+    .btn-delete:hover{opacity:.95}
+  </style>
+</head>
+<body>
+
+  <header>
+    <!-- Back arrow -->
+    <i class="ri-arrow-left-line" title="Voltar"></i>
+  </header>
+
+  <main>
+    <div class="card">
+      <i class="ri-error-warning-line" aria-hidden="true"></i>
+      <div class="message">Are you sure you want to delete "{{ task.title }}"?</div>
+
+      <div class="buttons">
+        
+        <a class="btn btn-cancel" href="{% url 'task_list' %}">Cancel</a>
+
+        <!-- Wrap the Delete button in a form -->
+        <form action="#" method="POST">
+           {% csrf_token %}
+          <button class="btn btn-delete" type="submit">Delete</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

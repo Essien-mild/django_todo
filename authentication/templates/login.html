@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo-List Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <div class="container">
+    <!-- Left Section -->
+    <div class="left">
+      <div class="logo">
+        <i class="ri-file-list-line"></i>
+        <span>Todo-List App</span>
+      </div>
+
+      <p class="welcome">
+        Welcome Back Creative! <br>
+        <small>We Are Happy To See You Again</small>
+      </p>
+
+        {% if messages %}
+          <ul>
+            {% for message in messages %}
+              {% if "login" in message.tags %}
+                <li>{{ message }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+      <div class="toggle-links">
+        <a href="{% url 'login' %}" class="active">Sign In</a>
+        <a href="{% url 'register' %}">Sign Up</a>
+      </div>
+
+      <!-- Django Login Form -->
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="input-group">
+          <i class="ri-mail-line"></i>
+          <input type="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="input-group">
+          <i class="ri-lock-line"></i>
+          <input type="password" name="password" placeholder="Enter your password" required>
+        </div>
+
+        <div class="options">
+          <label>
+            <input type="checkbox" name="remember"> Remember me
+          </label>
+          <a href="{% url 'forgot_password' %}" class="forgot">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn-login">Login</button>
+      </form>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right">
+      <div class="glass">
+        <p>© 2025 Mild. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

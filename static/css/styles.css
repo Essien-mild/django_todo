@@ -1,0 +1,214 @@
+:root {
+  --primary-color: #2d6cdf;
+  --secondary-color: #000;
+  --white: #fff;
+  --gray: #777;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --radius: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body, html {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Left Side */
+.left {
+  flex: 1;
+  background: var(--white);
+  padding: 11rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.logo i {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+}
+
+.welcome {
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+}
+
+.toggle-links {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.toggle-links a {
+  text-decoration: none;
+  color: var(--gray);
+  font-weight: 500;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+.toggle-links a.active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+form .input-group {
+  display: flex;
+  align-items: center;
+  background: #f2f2f2;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+.input-group i {
+  margin-right: 0.5rem;
+  color: var(--gray);
+}
+.input-group input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.options .forgot {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.btn-login {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--primary-color);
+  border: none;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+/* Right Side */
+.right {
+  flex: 1;
+  background: url('../img/bg.jpg') center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.glass {
+  width: 90%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  padding: 1rem;
+  color: var(--white);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+
+/* -----------------------
+   RESPONSIVE DESIGN
+------------------------ */
+
+/* Tablets & iPads */
+@media (max-width: 1024px) {
+  .left {
+    padding: 5rem;
+  }
+  .welcome {
+    font-size: 1.1rem;
+  }
+}
+
+/* Large Phones & Small Tablets */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .left, .right {
+    flex: unset;
+    width: 100%;
+    padding: 2rem;
+  }
+  .right {
+    min-height: 200px;
+    align-items: center;
+    justify-content: center;
+  }
+  .glass {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+   .right {
+   background:none;
+}
+  .left {
+    padding: 1.5rem;
+  }
+  .logo {
+    font-size: 1.4rem;
+  }
+  .welcome {
+    font-size: 1rem;
+  }
+  form .input-group {
+    padding: 0.65rem;
+  }
+  .btn-login {
+    padding: 0.65rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra Small Phones */
+@media (max-width: 360px) {
+  .left {
+    padding: 1rem;
+  }
+  .logo span {
+    font-size: 1rem;
+  }
+  .welcome {
+    font-size: 0.9rem;
+  }
+  .options {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+  }
+}

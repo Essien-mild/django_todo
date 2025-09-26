@@ -1,0 +1,114 @@
+:root{
+    --bg:#101010;
+    --panel:#1b1b1b;
+    --muted:#9b9b9b;
+    --accent-purple:#6f57ff;
+    --accent-yellow:#e6c84b;
+    --input:#242424;
+    --radius:12px;
+    --max-width:640px;
+}
+
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    background:linear-gradient(180deg,var(--bg),#0b0b0b 60%);
+    font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto;
+    color:#eee;
+    height: 100vh;
+}
+
+header{
+    height:50px;
+    display:flex;
+    align-items:center;
+    padding:0 15px;
+    background:rgba(0,0,0,0.25);
+    border-bottom:1px solid rgba(255,255,255,0.03);
+}
+header i{
+    font-size:24px;
+    color:#eee;
+    cursor:pointer;
+    transition:.2s;
+}
+header i:hover{
+    color:var(--accent-purple);
+}
+header span .to{ 
+    color: var(--accent-yellow); 
+}
+header span .do{ 
+    color: var(--accent-purple); 
+}
+.wrap{
+    max-width:var(--max-width);
+    margin:40px auto;
+    padding:0 20px;
+}
+
+form{
+    background:linear-gradient(180deg,rgba(255,255,255,0.015),rgba(255,255,255,0.02));
+    border:1px solid rgba(255,255,255,0.03);
+    box-shadow:0 6px 20px rgba(0,0,0,0.6);
+    border-radius:var(--radius);
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+label{
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:6px;
+    display:block;
+}
+
+input[type="text"],
+textarea,
+select,
+input[type="datetime-local"]{
+    width:100%;
+    background:var(--input);
+    border:1px solid rgba(255,255,255,0.03);
+    padding:14px 16px;
+    color:#ddd;
+    font-size:14px;
+    border-radius:var(--radius);
+    outline:none;
+}
+textarea{
+    resize:vertical;
+    min-height:40px;
+    height: auto;
+}
+
+.checkbox-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:14px;
+}
+.checkbox-row input{
+    width:18px;
+    height:18px;
+    accent-color:var(--accent-purple);
+}
+
+button{
+    background:linear-gradient(180deg,var(--accent-purple),#5f47f5);
+    color:#fff;
+    border:none;
+    padding:14px;
+    font-size:15px;
+    font-weight:600;
+    border-radius:var(--radius);
+    cursor:pointer;
+    box-shadow:0 6px 20px rgba(111,87,255,0.12);
+}
+button:hover{opacity:.95}
+
+@media(max-width:600px){
+    .wrap{margin:20px auto;}
+}

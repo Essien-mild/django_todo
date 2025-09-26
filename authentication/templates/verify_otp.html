@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify OTP</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <div class="container">
+    <!-- Left Section -->
+    <div class="left">
+      <div class="logo">
+        <i class="ri-file-list-line"></i>
+        <span>Todo-List App</span>
+      </div>
+      <p class="welcome">Hey! <br><small>Please enter 6-digit otp sent to your email</small></p>
+
+      <div class="toggle-links">
+     <a href=""></a>
+      </div>
+
+      {% if messages %}
+          <div> 
+            {% for message in messages %}
+              {% if "verify_otp" in message.tags %}
+                <p> {{ message }}</p>
+              {% endif %}
+            {% endfor %}
+         </div>
+        {% endif %}
+
+      <form method="POST">
+        {% csrf_token %}
+        <div class="input-group">
+          <i class="ri-mail-line"></i>
+           <input type="text" name="otp" placeholder="Enter OTP" required>
+        </div>
+
+        <button type="submit" class="btn-login">Verify otp</button>
+
+       
+      </form>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right">
+      <div class="glass">
+        <p>© 2025 Mild. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

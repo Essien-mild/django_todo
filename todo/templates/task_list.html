@@ -1,0 +1,75 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Task List</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Remix Icon CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Custom Dashboard CSS -->
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+  <header>
+    <div class="logo" aria-hidden="true">
+      <span class="to">Todo</span><span class="do">List</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Add Task -->
+    <div class="input-row">
+      <a href="{% url 'task_create' %}" class="btn-create">
+        <i class="ri-add-line"></i> Add Task
+      </a>
+    </div>
+
+    <!-- Task List -->
+    <section class="tasks" aria-label="Task List">
+      {% if tasks %}
+        {% for task in tasks %}
+          <article class="task {% if task.is_completed %}completed{% endif %}">
+            <div class="left">
+              <div class="circle {% if task.is_completed %}checked{% endif %}" aria-hidden="true">
+                {% if task.is_completed %}
+                  <i class="ri-checkbox-circle-line" style="font-size:14px"></i>
+                {% endif %}
+              </div>
+              <div class="task-text">
+                <strong>{{ task.title }}</strong><br>
+                Priority: {{ task.get_priority_display }} <br>
+                Deadline: {% if task.deadline %}{{ task.deadline }}{% else %}-{% endif %} <br>
+                Created: {{ task.created_at }}
+              </div>
+            </div>
+            <!-- Actions -->
+            <div class="actions">
+              <a href="{% url 'task_delete' task.pk %}">
+                <i class="ri-delete-bin-line" title="Delete"></i>
+              </a>
+            </div>
+            <div class="actions">
+              <a href="{% url 'task_update' task.pk %}">
+                <i class="ri-edit-line" title="Edit"></i>
+              </a>
+            </div>
+          </article>
+        {% endfor %}
+      {% else %}
+        <p>No tasks yet.</p>
+      {% endif %}
+    </section>
+
+    <!-- Logout -->
+    <div class="input-row">
+      <a href="{% url 'logout' %}" class="btn-create">Logout</a>
+    </div>
+  </main>
+</body>
+</html>
